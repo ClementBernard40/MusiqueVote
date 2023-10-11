@@ -16,8 +16,15 @@ const voteController = require('../controllers/voteController');
             .delete(voteController.deleteAVote)
             .put(voteController.updateAVote);
     
-    
+    router
+        .route('/result/:id_music/')
+        .get(voteController.getAMoy)
 
+    router
+        .route('/result/')
+        //.get(voteController.getPlusVote)
+        
 
+        
     module.exports = router;
 
