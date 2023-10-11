@@ -42,7 +42,7 @@ exports.createAVote = async (req,res) => {
 
         await Music.findById(req.params.id_music)
         const newVote = new Vote({...req.body, music_id: req.params.id_music});
-        //if (req.body >= 1 && req.body <= 5) {
+        //if (req.body >= 1 && req.body <= 5) {vfvf
             try {
                 
                 const vote = await newVote.save();
