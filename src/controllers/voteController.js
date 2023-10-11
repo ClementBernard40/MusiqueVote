@@ -107,7 +107,7 @@ exports.updateAVote = async (req,res) => {
 }
 
 
-exports.getAResult = async (req,res) => {
+exports.getAMoy = async (req,res) => {
 
     try {
         const result = await Vote.find({music_id: req.params.id_music});
@@ -123,45 +123,45 @@ exports.getAResult = async (req,res) => {
     } catch (error) {
         res.status(500);
         console.log(error);
-        res.json({message: "Erreur serveur."});
+        res.json({message: "Erreur serveur. aucune musique selectionée"});
     }
 }
 
 
+/* test de faire une methode pour sortir la musique la plus voté */
 
 
+// exports.getPlusVote= async (req, res) => {
+//     try {
+//         const result = await Vote.aggregate([
+//             {
+//                 $group: {
+//                     _id: Vote.find(),
+//                     totalVotes: { $sum: Vote.note }
+//                 }
+//             },
+//             {
+//                 $sort: { totalVotes: -1 }
+//             },
+//             {
+//                 $limit: 1
+//             }
+//         ]);
 
-exports.getPlusVoté= async (req, res) => {
-    try {
-        const result = await Vote.aggregate([
-            {
-                $group: {
-                    _id: "$musique_id",
-                    totalVotes: { $sum: "$vote" }
-                }
-            },
-            {
-                $sort: { totalVotes: -1 }
-            },
-            {
-                $limit: 1
-            }
-        ]);
+//         if (result.length === 0) {
+//             res.status(404).json({ message: 'Aucune musique trouvée' });
+//             return;
+//         }
 
-        if (result.length === 0) {
-            res.status(404).json({ message: 'Aucune musique trouvée' });
-            return;
-        }
+//         // 'ID de la musique la plus votée
+//         const mostVotedMusicId = result[0]._id;
 
-        // Récupérez l'ID de la musique la plus votée
-        const mostVotedMusicId = result[0]._id;
+//         // Recherchez les le contenue de la musique la plus voté
+//         const mostVotedMusic = await Music.findById(mostVotedMusicId);
 
-        // Recherchez les détails de la musique la plus votée dans la collection Musique
-        const mostVotedMusic = await Musique.findById(mostVotedMusicId);
-
-        res.status(200).json({ mostVotedMusic, totalVotes: result[0].totalVotes });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: 'Erreur serveur (getMostVotedMusic)' });
-    }
-};
+//         res.status(200).json({ mostVotedMusic, totalVotes: result[0].totalVotes });
+//     } catch (error) {
+//         console.log(error);
+//         res.status(500).json({ message: 'Erreur serveur (getMostVotedMusic)' });
+//     }
+// };

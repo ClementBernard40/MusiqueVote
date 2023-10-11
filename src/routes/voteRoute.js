@@ -18,7 +18,7 @@ const voteController = require('../controllers/voteController');
     
     router
         .route('/result/:id_music/')
-        .get(voteController.getAResult)
+        .get(voteController.getAMoy)
 
     router
         .route('/result/')
