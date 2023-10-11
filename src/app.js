@@ -11,10 +11,10 @@ app.use(express.json());
 
 
 const musicRoute = require('./routes/musiqueRoute');
-// const commentRoute = require('./routes/commentRoute');
+const voteRoute = require('./routes/voteRoute');
 
 app.use('/musics', musicRoute);
-// app.use('/', commentRoute);
+app.use('/', voteRoute);
 
 
 app.listen(port, host);
