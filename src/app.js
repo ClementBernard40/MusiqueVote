@@ -15,6 +15,8 @@ const voteRoute = require('./routes/voteRoute');
 
 app.use('/musics', musicRoute);
 app.use('/', voteRoute);
+//app.use('/result', musicRoute);
+
 
 
 app.listen(port, host);
