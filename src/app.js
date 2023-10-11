@@ -4,7 +4,7 @@ const port = 3000;
 const host = '0.0.0.0';
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/apinode");
+mongoose.connect("mongodb://127.0.0.1:27017/musiquevote");
 
 app.use(express.urlencoded());
 app.use(express.json());

@@ -40,9 +40,9 @@ exports.getAllVotes = async (req,res) => {
 exports.createAVote = async (req,res) => {
     try {
 
-        const music = await Music.findById(req.params.id_music)
-        const newVote = new Vote({...req.body, music_id: music});
-        if (req.body >= 1 && req.body <= 5) {
+        await Music.findById(req.params.id_music)
+        const newVote = new Vote({...req.body, music_id: req.params.id_music});
+        //if (req.body >= 1 && req.body <= 5) {
             try {
                 
                 const vote = await newVote.save();
@@ -53,10 +53,10 @@ exports.createAVote = async (req,res) => {
                 res.status(500);
                 res.json({message: "Erreur serveur.(db"});
             }
-        } else {
-            res.status(500);
-            res.json({message: "le vote doit etre entre 1 et 5"});
-        }
+       // } else {
+            // res.status(500);
+            // res.json({message: "le vote doit etre entre 1 et 5"});
+       // }
              
         
         
