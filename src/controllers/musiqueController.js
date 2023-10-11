@@ -51,7 +51,7 @@ exports.createAMusic = async (req,res) => {
     }
 
 
-    
+
         exports.deleteAMusic = async (req,res) => {
                 try {
                     await Music.findByIdAndDelete(req.params.id_music);
